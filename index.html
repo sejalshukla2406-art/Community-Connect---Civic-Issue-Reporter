@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Connect - Civic Issue Reporter</title>
+
+  <!-- External Styles -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Leaflet Map CSS (Free, Open-Source Maps) -->
+  <link 
+    rel="stylesheet" 
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+    crossorigin="" 
+  />
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="navbar">
+    <div class="brand">
+      <span class="logo-icon">📍</span>
+      <h1>Community Connect</h1>
+    </div>
+    <div class="stats-badge">
+      <span id="activeCount">0</span> Active Issues
+    </div>
+  </header>
+
+  <main class="main-container">
+    
+    <!-- Left Panel: Reporting & Feed Tabs -->
+    <aside class="sidebar">
+      
+      <!-- Tab Controls -->
+      <div class="tab-nav">
+        <button id="tabReportBtn" class="tab-btn active" onclick="switchTab('report')">Report Issue</button>
+        <button id="tabFeedBtn" class="tab-btn" onclick="switchTab('feed')">Community Feed</button>
+        <button id="tabAnalyticsBtn" class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
+      </div>
+
+      <!-- Tab 1: Reporting Form -->
+      <section id="reportTab" class="tab-content active">
+        <h2>Report a Local Problem</h2>
+        <p class="helper-text">Pinpoint issues like potholes, trash dumps, or broken streetlights.</p>
+
+        <form id="issueForm">
+          <div class="form-group">
+            <label for="title">Title *</label>
+            <input type="text" id="title" required placeholder="e.g., Deep pothole near market gate" />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category *</label>
+            <select id="category" required>
+              <option value="Roads">Damaged Road / Pothole</option>
+              <option value="Sanitation">Garbage Dump</option>
+              <option value="Lighting">Broken Streetlight</option>
+              <option value="Water">Water Leakage / Pipe Burst</option>
+              <option value="Other">Other Civic Issue</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" rows="3" placeholder="Add specific details or landmarks..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Location Coordinates *</label>
+            <div class="location-box">
+              <input type="text" id="coordinates" readonly placeholder="Click map or tap GPS" required />
+              <button type="button" id="geoBtn" class="btn-secondary" title="Use Current GPS">📍 Detect GPS</button>
+            </div>
+            <small class="hint">Click anywhere on the map to manually set the pin.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="photo">Upload Photo</label>
+            <input type="file" id="photo" accept="image/*" />
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="isAnonymous" />
+              Report anonymously
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary" id="submitBtn">Submit Report</button>
+        </form>
+      </section>
+
+      <!-- Tab 2: Issue Feed -->
+      <section id="feedTab" class="tab-content">
+        <h2>Community Reports</h2>
+        <div class="filter-bar">
+          <label for="filterCategory">Filter:</label>
+          <select id="filterCategory" onchange="filterIssuesList()">
+            <option value="ALL">All Categories</option>
+            <option value="Roads">Roads</option>
+            <option value="Sanitation">Sanitation</option>
+            <option value="Lighting">Lighting</option>
+            <option value="Water">Water</option>
+          </select>
+        </div>
+        <div id="issuesList" class="issues-list">
+          <p class="empty-state">Loading reported issues...</p>
+        </div>
+      </section>
+
+      <!-- Tab 3: Authority Analytics -->
+      <section id="analyticsTab" class="tab-content">
+        <h2>Authority Analytics</h2>
+        <div class="chart-wrapper">
+          <canvas id="categoryChart"></canvas>
+        </div>
+        <div class="status-summary" id="statusSummary">
+          <!-- Summary statistics generated dynamically -->
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- Right Panel: Full Interactive Map -->
+    <div id="map-container">
+      <div id="map"></div>
+      <div class="map-legend">
+        <span><i class="dot dot-reported"></i> Reported</span>
+        <span><i class="dot dot-progress"></i> In Progress</span>
+        <span><i class="dot dot-resolved"></i> Resolved</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- External Scripts: Leaflet JS & Chart.js via CDN -->
+  <script 
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+    crossorigin="">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
