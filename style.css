@@ -1,4 +1,4 @@
-/* Base Reset & Fonts */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,7 +15,7 @@ body {
   overflow: hidden;
 }
 
-/* Header Navbar */
+
 .navbar {
   height: 56px;
   background: #0f172a;
@@ -49,7 +49,7 @@ body {
   border: 1px solid #334155;
 }
 
-/* App Main Layout: Two Panels */
+
 .main-container {
   display: flex;
   flex: 1;
@@ -57,7 +57,7 @@ body {
   position: relative;
 }
 
-/* Left Sidebar */
+
 .sidebar {
   width: 420px;
   background: #ffffff;
@@ -69,7 +69,7 @@ body {
   z-index: 500;
 }
 
-/* Tab Navigation */
+
 .tab-nav {
   display: flex;
   border-bottom: 1px solid #e2e8f0;
@@ -103,7 +103,7 @@ body {
   background: #ffffff;
 }
 
-/* Tab Content Areas */
+
 .tab-content {
   display: none;
   padding: 20px;
@@ -126,7 +126,6 @@ body {
   margin-bottom: 18px;
 }
 
-/* Form Styles */
 .form-group {
   margin-bottom: 14px;
 }
@@ -188,7 +187,7 @@ textarea {
   cursor: pointer;
 }
 
-/* Buttons */
+
 .btn-primary {
   width: 100%;
   padding: 11px;
@@ -222,7 +221,7 @@ textarea {
   background: #e2e8f0;
 }
 
-/* Community Feed Cards */
+
 .filter-bar {
   display: flex;
   align-items: center;
@@ -294,7 +293,7 @@ textarea {
   background: #f1f5f9;
 }
 
-/* Right Panel: Map & Floating Legend */
+
 #map-container {
   flex: 1;
   height: 100%;
@@ -335,7 +334,7 @@ textarea {
 .dot-progress { background: #f59e0b; }
 .dot-resolved { background: #16a34a; }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .main-container {
     flex-direction: column-reverse;
