@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Community Connect - Civic Issue Reporter</title>
 
-  <!-- External Styles -->
+  
   <link rel="stylesheet" href="style.css" />
   
-  <!-- Leaflet Map CSS (Free, Open-Source Maps) -->
+ 
   <link 
     rel="stylesheet" 
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
@@ -18,7 +18,7 @@
 </head>
 <body>
 
-  <!-- App Header -->
+  
   <header class="navbar">
     <div class="brand">
       <span class="logo-icon">📍</span>
@@ -31,17 +31,17 @@
 
   <main class="main-container">
     
-    <!-- Left Panel: Reporting & Feed Tabs -->
+    
     <aside class="sidebar">
       
-      <!-- Tab Controls -->
+      
       <div class="tab-nav">
         <button id="tabReportBtn" class="tab-btn active" onclick="switchTab('report')">Report Issue</button>
         <button id="tabFeedBtn" class="tab-btn" onclick="switchTab('feed')">Community Feed</button>
         <button id="tabAnalyticsBtn" class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
       </div>
 
-      <!-- Tab 1: Reporting Form -->
+      
       <section id="reportTab" class="tab-content active">
         <h2>Report a Local Problem</h2>
         <p class="helper-text">Pinpoint issues like potholes, trash dumps, or broken streetlights.</p>
@@ -93,7 +93,7 @@
         </form>
       </section>
 
-      <!-- Tab 2: Issue Feed -->
+      
       <section id="feedTab" class="tab-content">
         <h2>Community Reports</h2>
         <div class="filter-bar">
@@ -111,20 +111,20 @@
         </div>
       </section>
 
-      <!-- Tab 3: Authority Analytics -->
+      
       <section id="analyticsTab" class="tab-content">
         <h2>Authority Analytics</h2>
         <div class="chart-wrapper">
           <canvas id="categoryChart"></canvas>
         </div>
         <div class="status-summary" id="statusSummary">
-          <!-- Summary statistics generated dynamically -->
+          
         </div>
       </section>
 
     </aside>
 
-    <!-- Right Panel: Full Interactive Map -->
+    
     <div id="map-container">
       <div id="map"></div>
       <div class="map-legend">
@@ -136,7 +136,7 @@
 
   </main>
 
-  <!-- External Scripts: Leaflet JS & Chart.js via CDN -->
+  
   <script 
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
@@ -144,7 +144,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Custom App Logic -->
+  
   <script src="app.js"></script>
 </body>
 </html>
