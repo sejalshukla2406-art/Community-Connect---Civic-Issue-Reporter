@@ -1,11 +1,11 @@
-// Global State & Data Store
+
 let issues = [];
 let map;
 let markerGroup;
 let tempPin = null;
 let categoryChartInstance = null;
 
-// Mock initial data if backend isn't running yet
+
 const initialMockIssues = [
   {
     id: 1,
@@ -42,14 +42,13 @@ const initialMockIssues = [
   }
 ];
 
-// Initialize on DOM ready
+
 document.addEventListener("DOMContentLoaded", () => {
   initMap();
   loadIssues();
   setupEventListeners();
 });
 
-// 1. Initialize Leaflet Map
 function initMap() {
   map = L.map("map").setView([28.6139, 77.2090], 14);
 
@@ -60,13 +59,12 @@ function initMap() {
 
   markerGroup = L.layerGroup().addTo(map);
 
-  // Click map to select location
+
   map.on("click", (e) => {
     setCoordinates(e.latlng.lat, e.latlng.lng);
   });
 }
 
-// 2. Set Pin Coordinates
 function setCoordinates(lat, lng) {
   document.getElementById("coordinates").value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
 
@@ -84,7 +82,7 @@ function setCoordinates(lat, lng) {
   }).addTo(map);
 }
 
-// 3. Browser GPS Geolocation
+
 function getUserLocation() {
   if (!navigator.geolocation) {
     alert("Geolocation is not supported by your browser.");
@@ -110,7 +108,7 @@ function getUserLocation() {
   );
 }
 
-// 4. Load Issues (From LocalStorage/Mock Data)
+
 function loadIssues() {
   const saved = localStorage.getItem("community_issues");
   issues = saved ? JSON.parse(saved) : [...initialMockIssues];
@@ -122,7 +120,7 @@ function saveIssues() {
   renderAll();
 }
 
-// 5. Render Map Markers, Feed, and Dashboard Stats
+
 function renderAll() {
   renderMapMarkers();
   renderFeedList();
@@ -224,7 +222,7 @@ function renderStats() {
   }
 }
 
-// 6. Authority Analytics Chart (Chart.js)
+
 function renderChart() {
   const chartCanvas = document.getElementById("categoryChart");
   if (!chartCanvas) return;
@@ -258,7 +256,7 @@ function renderChart() {
   });
 }
 
-// 7. Actions: Upvote & Filter
+
 window.upvoteIssue = function (id) {
   const target = issues.find((i) => i.id === id);
   if (target) {
@@ -271,7 +269,6 @@ window.filterIssuesList = function () {
   renderFeedList();
 };
 
-// 8. Tab Navigation Logic
 window.switchTab = function (tabName) {
   document.querySelectorAll(".tab-btn").forEach((btn) => btn.classList.remove("active"));
   document.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
@@ -289,7 +286,7 @@ window.switchTab = function (tabName) {
   }
 };
 
-// 9. Event Listeners & Form Submission
+
 function setupEventListeners() {
   document.getElementById("geoBtn").addEventListener("click", getUserLocation);
 
@@ -317,7 +314,7 @@ function setupEventListeners() {
     issues.unshift(newIssue);
     saveIssues();
 
-    // Reset Form & Clear Temp Pin
+    
     e.target.reset();
     if (tempPin) {
       map.removeLayer(tempPin);
